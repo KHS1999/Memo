@@ -21,7 +21,7 @@
 				<h1 class="pt-5">회원가입</h1>
 				 <input type="text" id="idInput" class="form-control  mt-3 " placeholder="아이디">
 				 <input type="text"  id="passwordInput" class="form-control  mt-3" placeholder="비밀번호"><br>
-				 <input type="text"  id="psdcheckInput"class="form-control  mt-3" placeholder="비밀번호 확인"><br>
+				 <input type="password"  id="psdcheckInput"class="form-control  mt-3" placeholder="비밀번호 확인"><br>
 				 <input type="text"  id="nameInput" class="form-control  mt-3" placeholder="이름"><br>
 				 <input type="text"  id="emailInput" class="form-control   mt-3" placeholder="이메일">
 				<button  id="joinBtn" class="btn bg-primary text-white btn-block mt-3">회원가입</button><br>

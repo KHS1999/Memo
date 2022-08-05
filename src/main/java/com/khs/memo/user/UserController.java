@@ -1,5 +1,8 @@
 package com.khs.memo.user;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -11,9 +14,26 @@ public class UserController {
 		return "user/signup";
 	}
 	
-	@GetMapping("/user/sign/view")
+	@GetMapping("/user/signin/view")
 	public String signView() {
 		return "user/signin";
+	}
+	
+	@GetMapping("/user/signout")
+	public String signOut(HttpServletRequest request) {
+		// 로그아웃
+		// 로그인시에 저장한 세션의 값들을 모두 제거한다.
+		
+		HttpSession session = request.getSession();
+		
+		// userId, userLoginId, userName
+		session.removeAttribute("userId");
+		session.removeAttribute("userLoginId");
+		session.removeAttribute("userName");
+		
+		// 리다이렉트
+		return "redirect:/user/signin/view";
+		
 	}
 	
 	

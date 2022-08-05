@@ -17,22 +17,29 @@
 <body>
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
+		<form id="loginForm">
 		<section>
+			
 			<div id="article" class="text-center ">
-				<h1 class="pt-5">회원가입</h1>
+				<h1 class="pt-5">로그인</h1>
 				 <input type="text" id="idInput" class="form-control  mt-3 " placeholder="아이디">
-				 <input type="text"  id="passwordInput" class="form-control  mt-3" placeholder="비밀번호">
-				<button  id="joinBtn" class="btn bg-primary text-white btn-block mt-3">로그인</button>		
+				 <input type="password"  id="passwordInput" class="form-control  mt-3" placeholder="비밀번호">
+				<button  id="loginBtn" type="submit" class="btn bg-primary text-white btn-block mt-3">로그인</button>		
 			</div>
-			<div class="text-center mt-3">
+			<div class="text-center">
 				<a href="/user/signup/view" class="text-center">회원가입</a>	
 			</div>	
 		</section>
+		</form>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 	<script>
-		$(doucument).ready(function(){
-			$("#joinBtn").on("click",function(){
+		$(document).ready(function(){
+			$("#loginForm").on("submit",function(e){
+				
+				// 해당하는 이벤트에 포함된 모든 기능을 중단한다!!
+				e.preventDefault();
+				
 				let id = $("#idInput").val();
 				let password = $("#passwordInput").val();
 				
@@ -41,29 +48,29 @@
 					return;
 				}
 				
-				if(password == ""{
+				if(password == ""){
 					alert("비밀번호를 입력하세요!");
 					return;
-				})
+				}
 			
 				$.ajax({
 					
 					type:"post",
-					url:"/user/sign",
+					url:"/user/signin",
 					data:{"loginId":id,"password":password},
-					success:funcion(){
+					success:function(data){
 						
 						if(data.result == "success"){
-							location.href=
+							location.href="/post/list/view";
 						}else{
-							alert("회원가입 실패");
+							alert("아이디/비밀번호를 확인해주세요!!");
 						}
 						
 					},
 					error:function(){
-						alert("회원가입 에러발생!!");
+						alert("로그인 에러!!");
 					}
-				})	
+				});	
 			});
 		});
 	</script>
