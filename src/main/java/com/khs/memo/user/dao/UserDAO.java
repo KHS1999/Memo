@@ -1,4 +1,4 @@
-package com.khs.memo.dao;
+package com.khs.memo.user.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

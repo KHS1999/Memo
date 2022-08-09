@@ -67,7 +67,7 @@
 					data:{"loginId":id, "password":password, "name":name, "email":email},
 					success:function(data){
 						if(data.result == "success"){
-							location.href = "/user/sign/view";
+							location.href = "/user/signin/view";
 						}else{
 							alert("회원가입 실패");
 						}

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.khs.memo.bo.UserBO;
 import com.khs.memo.model.User;
+import com.khs.memo.user.bo.UserBO;
 
 @RestController // @Controller + @ResponseBody
 public class UserRestController {

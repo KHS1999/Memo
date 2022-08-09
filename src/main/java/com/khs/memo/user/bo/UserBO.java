@@ -1,11 +1,11 @@
-package com.khs.memo.bo;
+package com.khs.memo.user.bo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.khs.memo.common.EncryptUtils;
-import com.khs.memo.dao.UserDAO;
 import com.khs.memo.model.User;
+import com.khs.memo.user.dao.UserDAO;
 
 @Service
 public class UserBO {
@@ -27,3 +27,4 @@ public class UserBO {
 		return userDAO.selectUser(loginId, encryptPassword);
 	}
 }
+
