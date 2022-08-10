@@ -1,7 +1,11 @@
 package com.khs.memo.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.khs.memo.post.model.Post;
 
 @Repository
 public interface PostDAO {
@@ -11,4 +15,7 @@ public interface PostDAO {
 			,@Param("title") String title
 			,@Param("content") String content);
 	
+	public List<Post> selectPostList(@Param("userId") int userId);
+	
+	public Post selectPost(@Param("id") int id);
 }
