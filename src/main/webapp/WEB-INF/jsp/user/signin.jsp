@@ -27,7 +27,7 @@
 				<button  id="loginBtn" type="submit" class="btn bg-primary text-white btn-block mt-3">로그인</button>		
 			</div>
 			<div class="text-center">
-				<a href="/user/signup/view" class="text-center">회원가입</a>	
+				<a href="/user/signup/view" class="text-center">회원가입</a> 	
 			</div>	
 		</section>
 		</form>
