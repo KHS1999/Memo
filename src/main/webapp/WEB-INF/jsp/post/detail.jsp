@@ -18,13 +18,17 @@
 	<c:import url="/WEB-INF/jsp/include/header.jsp"/>
 	<section class="d-flex justify-content-center">
 		<div class="col-6  my-4">
-			<h1  class="text-center">메모 입력</h1>
+			<h1  class="text-center">메모</h1>
 			<div class="d-flex justify-content-between mt-2">
 				<label>제목</label> 
 				<input type="text" id="titleInput" class="form-control col-11" value="${memo.subject }">
 			</div>
 			<textarea rows="5" id="contentInput" class="form-control mt-2">${memo.content }"</textarea>
-			<input type="file" class="mt-2">
+			
+			<div>
+				<img class="w-100" src="${memo.imagePath }">
+			</div>
+			
 			<div class="d-flex justify-content-between mt-3">
 			<div>
 				<a href="/post/list/view" class="btn btn-info">목록으로</a>

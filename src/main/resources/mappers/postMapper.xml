@@ -11,6 +11,7 @@
   			`userId`
   			,`subject`
   			,`content`
+  			,`imagePath`
   			,`createdAt`
   			,`updatedAt`
   		)
@@ -19,6 +20,7 @@
   			#{userId}
   			,#{title}
   			,#{content}
+  			,#{imagePath}
   			,now()
   			,now()
   		)
@@ -31,6 +33,7 @@
   			,`userId`
   			,`subject`
   			,`content`
+  			,`imagePath`
   			,`createdAt`
   			,`updatedAt`
   		FROM 
@@ -48,6 +51,7 @@
   			,`userId`
   			,`subject`
   			,`content`
+  			,`imagePath`
   			,`createdAt`
   			,`updatedAt`
   		FROM 

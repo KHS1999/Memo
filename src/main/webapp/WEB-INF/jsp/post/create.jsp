@@ -24,7 +24,7 @@
 				<input type="text" id="titleInput" class="form-control col-11">
 			</div>
 			<textarea rows="5" id="contentInput" class="form-control mt-2"></textarea>
-			<input type="file" class="mt-2">
+			<input type="file" class="mt-2" id="fileInput">
 			<div class="d-flex justify-content-between mt-3">
 				<a href="/post/list/view" class="btn btn-info">목록으로</a>
 				<button type="button" id="saveBtn" class="btn btn-info">저장</button>
@@ -43,6 +43,7 @@
 				let title = $("#titleInput").val();
 				let content = $("#contentInput").val().trim();
 				
+				
 				if(title == ""){
 					alert("제목을 입력하세요");
 					return ;
@@ -53,11 +54,20 @@
 					return;
 				}
 				
+				// 파일을 포함한 파라미터 구하기
+				var formData = new FormData();
+				formData.append("title",title);
+				formData.append("content",content);
+				formData.append("file",$("#fileInput")[0].files[0]);
+				
 				// 메모 api 호출
 				$.ajax({
 					type:"post",
 					url:"/post/create",
-					data:{"title":title, "content":content},
+					data:formData,
+					enctype:"multipart/form-data", // 파일 업로드 필수 옵션
+					processData:false,			   // 파일 업로드 필수 옵션
+					contentType:false,		 	   // 파일 업로드 필수 옵션
 					success:function(data){
 						if(data.result == "success"){
 							location.href = "/post/list/view"
