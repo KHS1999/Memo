@@ -23,7 +23,7 @@
 				<label>제목</label> 
 				<input type="text" id="titleInput" class="form-control col-11" value="${memo.subject }">
 			</div>
-			<textarea rows="5" id="contentInput" class="form-control mt-2">${memo.content }"</textarea>
+			<textarea rows="5" id="contentInput" class="form-control mt-2">${memo.content }</textarea>
 			
 			<div>
 				<img class="w-100" src="${memo.imagePath }">
@@ -32,9 +32,9 @@
 			<div class="d-flex justify-content-between mt-3">
 			<div>
 				<a href="/post/list/view" class="btn btn-info">목록으로</a>
-				<button type="button" class="btn btn-danger">삭제</button>
+				<button type="button" id="deleteBtn" class="btn btn-danger" data-post-id="${memo.id }">삭제</button>
 			</div>	
-				<button type="button" id="saveBtn" class="btn btn-info">수정</button>
+				<button type="button" id="saveBtn" class="btn btn-info" data-post-id="${memo.id }">수정</button>
 			</div>
 		
 		</div>
@@ -42,5 +42,64 @@
 	<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	
 	</div>
+	<script>
+		$(document).ready(function() {
+			$("#deleteBtn").on("click",function(){
+				
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/delete",
+					data:{"postId":postId},
+					success:function(data){
+						
+						if(data.result == "success"){
+							location.href="/post/list/view"
+						}else{
+							alert("삭제 실패!");
+						}
+					},
+					error:function(){
+						alert("삭제 에러!");
+					}
+				});
+				
+			});
+			$("#saveBtn").on("click", function(){
+				let title = $("#titleInput").val();
+				let content = $("#contentInput").val().trim();
+				let postId = $(this).data("post-id");
+				
+				if(title == ""){
+					alert("제목을 입력하세요");
+					return ;
+				}
+				
+				if(content == ""){
+					alert("내용을 입력하세요");
+					return;
+				}
+				
+				$.ajax({
+					type:"post",
+					url:"/post/update",
+					data:{"postId":postId, "title":title, "content":content},
+					success:function(data){
+						if(data.result == "success"){
+							location.reload();
+						}else{
+							alert("수정실패");
+						}
+					},
+					error:function(){
+						alert("수정에러!");
+					}
+				});
+				
+			});
+			
+		});
+	</script>
 </body>
 </html>
